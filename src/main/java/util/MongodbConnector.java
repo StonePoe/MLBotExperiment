@@ -1,3 +1,4 @@
+package util;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -49,7 +50,7 @@ public class MongodbConnector {
     // MongoDB database name
     private String dbName = null;
     
-    // MongodbConnector singleton
+    // src.main.java.util.MongodbConnector singleton
     private static MongodbConnector mongodbConnector = null;
     
     /**
