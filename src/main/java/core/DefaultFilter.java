@@ -26,8 +26,11 @@ public class DefaultFilter {
 
     private static final String recordPath = "filteredText.txt";
 
+    private double eRange = 0.20;
+
     public DefaultFilter(List<String> corpusList) {
         this.corpusList = corpusList;
+        processedWords = new ArrayList<>();
 
         try {
             InputStream is = new FileInputStream(onlpBinPath);
@@ -43,6 +46,7 @@ public class DefaultFilter {
     public int defaultWashAndSplit() {
         int eliminatingCount = 0;
         FileWriter writer = null;
+
         try {
             writer=new FileWriter(recordPath,true);
             SimpleDateFormat format=new SimpleDateFormat();
@@ -55,7 +59,7 @@ public class DefaultFilter {
         for (String corpus: corpusList) {
             List<String> result = entropyTest(splitWords(corpus));
 
-            if(result.isEmpty() && writer != null) {
+            if (result.isEmpty() && writer != null) {
                 try {
                     writer.write("\t" + corpus + "\n");
                 } catch (IOException e) {
@@ -126,7 +130,7 @@ public class DefaultFilter {
             rate += counts * -1.0 / sum * Math.log(counts * 1.0 / sum);
         }
 
-        if (rate < 0.25) {
+        if (rate < eRange) {
             return new ArrayList<>();
         }
         else {

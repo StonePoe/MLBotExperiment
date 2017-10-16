@@ -3,6 +3,7 @@ package util;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+
 import java.sql.*;
 import java.util.List;
 
@@ -21,7 +22,8 @@ public class JDBCConnector {
         } catch (ClassNotFoundException e1) {
             e1.printStackTrace();
         }
-        String url = "jdbc:mysql://47.88.102.34:3306/" + schema + "?useUnicode=true&characterEncoding=UTF-8";
+//        47.88.102.34
+        String url = "jdbc:mysql://127.0.0.1:3306/" + schema + "?useUnicode=true&characterEncoding=UTF-8";
         Connection conn;
         try {
             conn = DriverManager.getConnection(url, user, password);
