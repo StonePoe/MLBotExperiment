@@ -1,7 +1,9 @@
-import core.DefaultFilter;
+import core.filter.DefaultFilter;
+import core.lda.LDA;
 import org.json.JSONArray;
 import util.JDBCConnector;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,14 @@ public class Entrance {
 
         DefaultFilter defaultFilter = new DefaultFilter(corpus);
         defaultFilter.defaultWashAndSplit();
-        System.out.println(defaultFilter.getProcessedWords());
+        List<String> processedCorpus = defaultFilter.getProcessedWords();
+
+        LDA lda = new LDA(5);
+        lda.addDoc("business", processedCorpus);
+        try {
+            lda.trainAndSave("./result", "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

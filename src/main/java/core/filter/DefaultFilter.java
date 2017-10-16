@@ -1,4 +1,4 @@
-package core;
+package core.filter;
 
 import opennlp.tools.tokenize.Tokenizer;
 import opennlp.tools.tokenize.TokenizerME;
