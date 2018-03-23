@@ -14,7 +14,9 @@ public class Entrance {
     public static void main(String[] args) {
         JDBCConnector jdbcConnector = new JDBCConnector("root", "root", "nla");
 
-        JSONArray jsonCorpus = jdbcConnector.select("select content from businessReview");
+        JSONArray jsonCorpus = jdbcConnector.select("select content from businessReview where appInfo > 550 and appInfo < 560");
+
+        System.out.println(jsonCorpus);
 
         List<String> corpus = new ArrayList<>();
         for(int i=0; i<jsonCorpus.length();i++) {
